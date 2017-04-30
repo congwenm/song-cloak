@@ -33,13 +33,13 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: ['es2015','react']
+              presets: ['env','react']
             }
           }
         ],
       },
       {
-        test: /\.css$/,
+        test: /\.s?css$/,
         loader: ExtractTextPlugin.extract('css-loader!sass-loader')
       }
     ]
@@ -58,6 +58,7 @@ module.exports = {
 
     // delete previous outputs
     function() {
+      return 0; // dont need this, causing more harm than good
       this.plugin('compile', function() {
         let basepath = __dirname + '/public'
         let paths = ["/javascripts", "/stylesheets"];
