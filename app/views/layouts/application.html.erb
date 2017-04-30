@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Antipipeline</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    fingerprinted_asset('application'), media: 'all' %>
+    <%= javascript_include_tag fingerprinted_asset('application') %>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <%= yield %>
+  </body>
+</html>
