@@ -11,27 +11,48 @@ class SongList extends React.Component {
     return <List className={className}>
       <Subheader>My Songs</Subheader>
       {
-        songs.map((song, index) => [
-          <ListItem
-            key={index}
-            primaryText={song.name}
-            leftAvatar={
-              <Avatar   
-                src={song.img}
-              />
-            }
-            rightAvatar={
-              <PlayArrow style={{ 
-                width: 40, height: 40,
-                display: nowPlaying === song ? 'block' : 'none'
-              }}/>
-            }
-          />,
-          <Divider key='divider'/>
-        ])
+        songs.map((song, index) => 
+          <SongItem 
+            song={song} 
+            key={index} 
+            index={index}
+            isPlaying={song === nowPlaying}
+          />
+        )
       }
     </List>  
   }
 };
 
 export default SongList;
+
+
+const SongItem = ({ song, index, isPlaying }) => {
+  return <div key={index} 
+    style={{ lineHeight: 0 }}
+  >
+    <ListItem
+      primaryText={song.name}
+      leftAvatar={
+        <div>
+          <p style={{ 
+            display: 'inline-block',
+            verticalAlign: 'top',
+            marginLeft: -10,
+            paddingRight: 10,
+          }}>
+            {index + 1}
+          </p>
+          <Avatar src={song.img} />
+        </div>
+      }
+      rightAvatar={
+        <PlayArrow style={{ 
+          width: 40, height: 40,
+          display: isPlaying ? 'block' : 'none'
+        }}/>
+      }
+    />
+    <Divider className="col-xs-12"></Divider>
+  </div>
+}
