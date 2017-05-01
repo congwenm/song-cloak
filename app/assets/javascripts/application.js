@@ -16,26 +16,27 @@ import AppBar from 'material-ui/AppBar';
 
 
 // my components
-import MenuDrawer from './components/MenuDrawer';
+import MenuDrawer from './components/MenuDrawer'
 import AppBody from './components/AppBody'
 
 const SIDEBAR_WIDTH = 200
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {open: false};
+    this.state = {open: false, themeOptions: darkBaseTheme};
   }
 
   handleToggle() {
     this.setState({ open: !this.state.open });
   }
   render() {
-    // TODO: check if manual background is even needed.
     const { open } = this.state
     const squeezedStyle = {
-      paddingLeft: (open ? SIDEBAR_WIDTH : 0) + 24
+      paddingLeft: (open ? SIDEBAR_WIDTH : 0) + 24,
+      transition: 'padding-left 0.2s',
     }
 
+    // TODO: check if manual background is even needed.
     return (
       <div style={{ backgroundColor: darkBaseTheme.palette.primary1Color }}>
         <MenuDrawer
@@ -49,13 +50,13 @@ class App extends React.Component {
           onLeftIconButtonTouchTap={() => this.handleToggle()}
         />
 
-        <AppBody
-        />
+        <div>
+          <AppBody style={squeezedStyle} />
+        </div>
       </div>
     )
   }
 }
-
 
 document.onreadystatechange = function() {
   ReactDOM.render(
