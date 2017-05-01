@@ -1,7 +1,7 @@
 import React from 'react'
 import SongList from './SongList'
 var mockData = [
-  { 
+  {
     name: "Brendan Lim",
     img: "https://pbs.twimg.com/profile_images/823671383758663681/MLYqhCiF.jpg",
   },
@@ -26,7 +26,7 @@ export default class AppBody extends React.Component {
     const {style} = this.props
     const { nowPlaying } = this.state
     return <div
-      style={Object.assign({ minHeight: 1000 }, style)} 
+      style={Object.assign({ minHeight: 1000 }, style)}
       className="row"
     >
       <SongList className="col-xs-6"
@@ -54,6 +54,8 @@ class NowPlaying extends React.Component {
 
   render() {
     const {className} = this.props
+    const src = 'https://www.google.com'
+    // "https://www.youtube.com/embed/tOKS5oSqjII?list=PLArt5RZjmyj9CcNB_K4H--giBaOdx-rup?ecver=1"
     return <div className={className} style={{
       padding: '20px 5px'
     }}>
@@ -76,7 +78,7 @@ class NowPlaying extends React.Component {
                 width: '100%',
                 height: '100%'
               }}
-              src="https://www.youtube.com/embed/tOKS5oSqjII?list=PLArt5RZjmyj9CcNB_K4H--giBaOdx-rup?ecver=1"
+              src={src}
               frameBorder="0"
               allowFullScreen
             />
