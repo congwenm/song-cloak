@@ -3,31 +3,33 @@ import Avatar from 'material-ui/Avatar';
 import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 import Divider from 'material-ui/Divider';
-import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
+import PlayArrow from 'material-ui/svg-icons/av/play-arrow';
 
 class SongList extends React.Component {
   render() {
-    const { className } = this.props
+    const { className, songs, nowPlaying } = this.props
     return <List className={className}>
       <Subheader>My Songs</Subheader>
-      <ListItem
-        primaryText="Brendan Lim"
-        leftAvatar={
-          <Avatar   
-            src="https://pbs.twimg.com/profile_images/823671383758663681/MLYqhCiF.jpg"
-          />
-        }
-        rightIcon={<CommunicationChatBubble />}
-      />
-      <ListItem
-        primaryText="Eric Hoffman"
-        leftAvatar={
-          <Avatar   
-            src="https://pbs.twimg.com/profile_images/823671383758663681/MLYqhCiF.jpg"
-          />
-        }
-        rightIcon={<CommunicationChatBubble />}
-      />
+      {
+        songs.map((song, index) => [
+          <ListItem
+            key={index}
+            primaryText={song.name}
+            leftAvatar={
+              <Avatar   
+                src={song.img}
+              />
+            }
+            rightAvatar={
+              <PlayArrow style={{ 
+                width: 40, height: 40,
+                display: nowPlaying === song ? 'block' : 'none'
+              }}/>
+            }
+          />,
+          <Divider key='divider'/>
+        ])
+      }
     </List>  
   }
 };

@@ -38,7 +38,7 @@ class App extends React.Component {
 
     // TODO: check if manual background is even needed.
     return (
-      <div style={{ backgroundColor: darkBaseTheme.palette.primary1Color }}>
+      <div style={{ backgroundColor: darkBaseTheme.palette.primary3Color }}>
         <MenuDrawer
           open={open}
           width={SIDEBAR_WIDTH}
