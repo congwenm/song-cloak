@@ -1,6 +1,8 @@
 class Song < ApplicationRecord
   before_save :fetch_from_link
 
+  validates :link, uniqueness: true
+
   def fetch_from_link
     video = Yt::Video.new(url: self.link)
     self.uid = video.id
