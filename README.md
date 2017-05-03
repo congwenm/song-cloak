@@ -17,3 +17,6 @@ then in two terminal instances run these:
 Good to go!
 
 
+
+TODO:
+-[ ] upgrade to webpack 2, check for smaller module

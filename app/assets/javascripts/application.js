@@ -19,11 +19,20 @@ import AppBar from 'material-ui/AppBar';
 import MenuDrawer from './components/MenuDrawer'
 import AppBody from './components/AppBody'
 
+// models
+import Song from './models/song'
+
 const SIDEBAR_WIDTH = 200
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {open: false, themeOptions: darkBaseTheme};
+    Song.fetch().then(songs => {
+      this.setState({
+        songs
+      })
+      debugger;
+    })
   }
 
   handleToggle() {
