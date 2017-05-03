@@ -13,8 +13,15 @@
 ActiveRecord::Schema.define(version: 20170501160007) do
 
   create_table "songs", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "link"
+    t.string   "title"
+    t.datetime "published_at"
+    t.integer  "likes"
+    t.integer  "dislikes"
+    t.string   "uid"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["uid"], name: "index_songs_on_uid"
   end
 
 end

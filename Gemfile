@@ -5,6 +5,10 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'omniauth-google-oauth2'
+gem 'yt', '~> 0.13.7'
+gem 'factory_girl'
+gem 'factory_girl_rails' # possible need to wrap this in :test
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
