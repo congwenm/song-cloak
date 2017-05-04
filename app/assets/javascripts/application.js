@@ -31,14 +31,13 @@ class App extends React.Component {
       this.setState({
         songs
       })
-      debugger;
     })
   }
   handleToggle() {
     this.setState({ open: !this.state.open });
   }
   render() {
-    const { open } = this.state
+    const { open, songs } = this.state
     const squeezedStyle = {
       paddingLeft: (open ? SIDEBAR_WIDTH : 0) + 24,
       transition: 'padding-left 0.2s',
@@ -59,7 +58,7 @@ class App extends React.Component {
         />
 
         <div>
-          <AppBody style={squeezedStyle} />
+          <AppBody style={squeezedStyle} songs={songs}/>
         </div>
       </div>
     )

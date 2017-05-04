@@ -24,14 +24,15 @@ export default class AppBody extends React.Component {
   }
 
   render() {
-    const {style} = this.props
+    const {style, songs} = this.props
+    if (!songs) return false
     const { nowPlaying } = this.state
     return <div
       style={Object.assign({ minHeight: 1000 }, style)}
       className="row"
     >
       <SongList className="col-xs-6"
-        songs={mockData}
+        songs={songs}
         nowPlaying={nowPlaying}
       />
       <NowPlaying className="col-xs-6"
