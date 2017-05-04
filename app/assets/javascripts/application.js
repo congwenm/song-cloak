@@ -19,9 +19,9 @@ import AppBar from 'material-ui/AppBar';
 import MenuDrawer from './components/MenuDrawer'
 import AppBody from './components/AppBody'
 
+
 // models
 import Song from './models/song'
-
 const SIDEBAR_WIDTH = 200
 class App extends React.Component {
   constructor(props) {
@@ -34,7 +34,6 @@ class App extends React.Component {
       debugger;
     })
   }
-
   handleToggle() {
     this.setState({ open: !this.state.open });
   }
