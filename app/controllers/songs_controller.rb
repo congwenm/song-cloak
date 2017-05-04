@@ -1,6 +1,6 @@
 class SongsController < ApplicationController
   def index
-    render json: Song.all.order(:created_at)
+    render json: Song.all.order(:created_at).as_json(except: [:description])
   end
 
   def create

@@ -7,6 +7,8 @@ class CreateSongs < ActiveRecord::Migration[5.0]
       t.integer :likes
       t.integer :dislikes
       t.string :uid
+      t.string :thumbnail_url
+      t.string :description
 
       t.timestamps
     end

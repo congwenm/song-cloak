@@ -1,22 +1,10 @@
 import React from 'react'
 import SongList from './SongList'
 import NowPlaying from './NowPlaying'
-var mockData = [
-  {
-    name: "Brendan Lim",
-    img: "https://pbs.twimg.com/profile_images/823671383758663681/MLYqhCiF.jpg",
-  },
-  {
-    name: 'Eric Hoffman',
-    img: "https://pbs.twimg.com/profile_images/823671383758663681/MLYqhCiF.jpg",
-  }
-]
-
-
 export default class AppBody extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { nowPlaying: mockData[0] }
+    this.state = { nowPlaying: props.songs && props.songs[0] }
   }
 
   setNowPlaying(nowPlaying) {

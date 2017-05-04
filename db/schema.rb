@@ -19,8 +19,10 @@ ActiveRecord::Schema.define(version: 20170501160007) do
     t.integer  "likes"
     t.integer  "dislikes"
     t.string   "uid"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string   "thumbnail_url"
+    t.string   "description"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["uid"], name: "index_songs_on_uid"
   end
 
