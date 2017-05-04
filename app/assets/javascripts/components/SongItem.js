@@ -11,25 +11,24 @@ export default ({ song, index, isPlaying }) => {
     style={{ lineHeight: 0 }}
   >
     <ListItem
-      primaryText={<p className="primaryText">{song.title}</p>}
+      primaryText={
+        <p className="primaryText m0">{song.title}</p>
+      }
       leftAvatar={
         <div>
-          <p style={{
-            display: 'inline-block',
-            verticalAlign: 'top',
-            marginLeft: -10,
-            paddingRight: 10,
-          }}>
+          <p className="pr1 align-top inline-block"
+            style={{ marginLeft: -10 }}
+          >
             {index + 1}
           </p>
           <Avatar src={song.thumbnail_url} />
         </div>
       }
       rightAvatar={
-        <PlayArrow style={{
-          width: 40, height: 40,
-          display: isPlaying ? 'block' : 'none'
-        }}/>
+        <PlayArrow 
+          classnames={isPlaying ? 'block' : 'none'}
+          style={{ width: 40, height: 40 }}
+        />
       }
     />
     <Divider className="col-xs-12"></Divider>

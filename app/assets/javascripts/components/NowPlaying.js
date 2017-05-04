@@ -1,4 +1,6 @@
 import React from 'react'
+import cx from 'classnames'
+
 import {
   Card,
   CardActions,
@@ -15,9 +17,7 @@ export default class NowPlaying extends React.Component {
     const {className} = this.props
     const src = 'https://www.google.com'
     // "https://www.youtube.com/embed/tOKS5oSqjII?list=PLArt5RZjmyj9CcNB_K4H--giBaOdx-rup?ecver=1"
-    return <div className={className} style={{
-      padding: '20px 5px'
-    }}>
+    return <div className={cx(className, 'px1 pt2')}>
       <Card>
         <CardHeader title="URL Avatar" subtitle="Subtitle" avatar="images/jsa-128.jpg"/>
         <CardMedia>

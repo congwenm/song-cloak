@@ -2,13 +2,14 @@
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();// Needed for onTouchTap
 
-import React from 'react'
-import ReactDOM from 'react-dom'
-import Contact from './contact'
-
+// css
 import 'normalize.css'
 import 'flexboxgrid'
 import './application.scss'
+
+import 'basscss/css/basscss.css';
+
+// material
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -16,6 +17,10 @@ import AppBar from 'material-ui/AppBar';
 
 
 // my components
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Contact from './contact'
+
 import MenuDrawer from './components/MenuDrawer'
 import AppBody from './components/AppBody'
 
