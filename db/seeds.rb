@@ -8,9 +8,12 @@
 require 'factory_girl_rails'
 
 [
-  'https://www.youtube.com/watch?v=tOKS5oSqjII',
-  'https://www.youtube.com/watch?v=Zu3M1XoM2rw',
-  'https://www.youtube.com/watch?v=5N8sUccRiTA',
+  # 'https://www.youtube.com/watch?v=tOKS5oSqjII',
+  # 'https://www.youtube.com/watch?v=Zu3M1XoM2rw',
+  # 'https://www.youtube.com/watch?v=5N8sUccRiTA',
+  'https://www.youtube.com/watch?v=Qk4acvdyyqo',
+  'https://www.youtube.com/watch?v=KQoPx7v74f0',
+  'https://www.youtube.com/watch?v=ezOb9Ii-wM4',
 ].each do |link|
   FactoryGirl.create(:song, link: link)  
 end

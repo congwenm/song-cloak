@@ -31,22 +31,33 @@ const SIDEBAR_WIDTH = 200
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {open: false, themeOptions: darkBaseTheme};
+    this.state = {
+      open: false, themeOptions: darkBaseTheme,
+      songs: null, nowPlaying: null,
+    };
     Song.fetch().then(songs => {
       this.setState({
-        songs
+        songs,
+        nowPlaying: songs[0]
       })
     })
   }
+
   handleToggle() {
     this.setState({ open: !this.state.open });
   }
+
+  setNowPlaying(nowPlaying) {
+    this.setState({ nowPlaying })
+  }
+
   render() {
-    const { open, songs } = this.state
+    const { open, songs, nowPlaying } = this.state
     const squeezedStyle = {
       paddingLeft: (open ? SIDEBAR_WIDTH : 0) + 24,
       transition: 'padding-left 0.2s',
     }
+    if (!songs) { return false }
 
     // TODO: check if manual background is even needed.
     return (
@@ -63,7 +74,12 @@ class App extends React.Component {
         />
 
         <div>
-          <AppBody style={squeezedStyle} songs={songs}/>
+          <AppBody 
+            style={squeezedStyle} 
+            songs={songs} 
+            nowPlaying={nowPlaying}
+            onChangeNowPlaying={np => this.setNowPlaying(np)}
+          />
         </div>
       </div>
     )

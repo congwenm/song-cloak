@@ -6,11 +6,12 @@ import PlayArrow from 'material-ui/svg-icons/av/play-arrow';
 
 import './SongItem.scss'
 
-export default ({ song, index, isPlaying }) => {
+export default ({ song, index, isPlaying, onChangeNowPlaying }) => {
   return <div key={index}
     style={{ lineHeight: 0 }}
   >
     <ListItem
+      onClick={() => onChangeNowPlaying(song)}
       primaryText={
         <p className="primaryText m0">{song.title}</p>
       }
@@ -26,7 +27,7 @@ export default ({ song, index, isPlaying }) => {
       }
       rightAvatar={
         <PlayArrow 
-          classnames={isPlaying ? 'block' : 'none'}
+          className={isPlaying ? 'block' : 'none'}
           style={{ width: 40, height: 40 }}
         />
       }
