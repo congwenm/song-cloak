@@ -19,6 +19,7 @@
 
 //   console.info('youtube iframe api loaded')
 // };
+// import './yt-api'
 
 class Youtube { 
   constructor({ 

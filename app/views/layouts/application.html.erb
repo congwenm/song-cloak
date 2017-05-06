@@ -4,7 +4,8 @@
     <title>Antipipeline</title>
     <%= csrf_meta_tags %>
 
-    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="https://www.youtube.com/iframe_api" async></script>
+    <!--OK, I have no idea why async make this work-->
     <%= stylesheet_link_tag    fingerprinted_asset('application'), media: 'all' %>
     <%= javascript_include_tag fingerprinted_asset('application') %>
   </head>
@@ -13,4 +14,5 @@
     <div id="root"></div>
     <%= yield %>
   </body>
+  <% console %>
 </html>

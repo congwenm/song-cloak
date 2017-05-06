@@ -34,6 +34,8 @@ import { currentPlayer } from './components/NowPlaying'
 
 // models
 import Song from './models/song'
+import User from './models/user'
+
 const SIDEBAR_WIDTH = 200
 class App extends React.Component {
   constructor(props) {
@@ -48,10 +50,17 @@ class App extends React.Component {
         nowPlaying: songs[0]
       })
     })
+    User.currentUser().then(currentUser => {
+      this.setState({ currentUser })
+    })    
   }
 
   handleToggle() {
-    this.setState({ open: !this.state.open });
+    this.setState({ open: !this.state.open })
+  }
+
+  handleLogout() {
+    this.setState({ currentUser: null })
   }
 
   setNowPlaying(nowPlaying) {
@@ -66,14 +75,14 @@ class App extends React.Component {
           break;
       }
     }
-    else {
-
-    }
     this.setState({ nowPlaying })
   }
 
   render() {
-    const { open, songs, nowPlaying } = this.state
+    const { 
+      open, songs, nowPlaying,
+      currentUser,
+    } = this.state
     const squeezedStyle = {
       paddingLeft: (open ? SIDEBAR_WIDTH : 0) + 24,
       transition: 'padding-left 0.2s',
@@ -87,6 +96,8 @@ class App extends React.Component {
           open={open}
           width={SIDEBAR_WIDTH}
           onRequestChange={open => this.setState({ open })}
+          currentUser={currentUser}
+          onLogout={() => this.handleLogout()}
         />
 
         <AppBar title="Song Cloak"

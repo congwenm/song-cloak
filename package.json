@@ -16,6 +16,7 @@
     "basscss": "^8.0.3",
     "classnames": "^2.2.5",
     "flexboxgrid": "^6.3.1",
+    "googleapis": "^19.0.0",
     "material-ui": "^0.17.4",
     "normalize.css": "^6.0.0",
     "react": "^15.5.4",

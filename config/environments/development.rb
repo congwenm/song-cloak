@@ -9,6 +9,10 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
+  # TODO: not there yet
+  # config.force_ssl = true
+  # config.ssl_options = {  redirect: { status: 307, port: 81 } }
+
   # Show full error reports.
   config.consider_all_requests_local = true
 

@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   # `scope` doesn't require api module, `namespace` does
   scope "api" do 
     resources :songs
+    get '/sessions/status'
   end
 
+
   get '/auth/:provider/callback', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
 end
