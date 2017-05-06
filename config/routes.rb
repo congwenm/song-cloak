@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   scope "api" do 
     resources :songs
   end
+
+  get '/auth/:provider/callback', to: 'sessions#create'
 end

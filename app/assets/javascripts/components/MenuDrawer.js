@@ -11,7 +11,11 @@ export default class MenuDrawerComp extends React.Component {
           docked
           {...this.props}
         >
-          <MenuItem>Menu Item</MenuItem>
+          <MenuItem>
+            <a className="Link" href="/auth/google_oauth2">
+              Log In
+            </a>
+          </MenuItem>
           <MenuItem>Menu Item 2</MenuItem>
         </Drawer>
       </div>

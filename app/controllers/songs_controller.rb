@@ -3,6 +3,10 @@ class SongsController < ApplicationController
     render json: Song.all.order(:created_at).as_json(except: [:description])
   end
 
+  # def index
+  # account = Yt::Account.new access_token: 
+  #   end
+
   def create
     @song_link ||= params[:song][:link]
     if @song_link
