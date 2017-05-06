@@ -12,7 +12,7 @@ import {
 import FlatButton from 'material-ui/FlatButton'
 
 import Youtube, {
-  UNSTARTED, ENDED, PLAYING, PAUSED, BUFFERING
+  UNSTARTED, ENDED, PLAYING, PAUSED, BUFFERING, CUED
 } from '../lib/youtube'
 export let currentPlayer = null
 
@@ -24,15 +24,13 @@ const createPlayer = ({ nextSong }) => {
       this.player.playVideo()
     },
     onStateChange(event) {
-      console.debug('event happened', event.data)
+      console.warn('event happened', event.data)
       switch(event.data) {
-        case UNSTARTED: // not sure what this means
-          console.warn('unstarted player', this.player)
+        case UNSTARTED: // A song is deleted
+          nextSong()
           break;
         case ENDED:
-          nextSong();
-          break;
-        case PAUSED:
+          nextSong()
           break;
       }
     }

@@ -16,7 +16,7 @@ export default class AppBody extends React.Component {
       style={Object.assign({ minHeight: 1000 }, style)}
       className="row"
     >
-      <SongList className="col-xs-6"
+      <SongList className="SongList col-xs-6"
         songs={songs}
         nowPlaying={nowPlaying}
         onChangeNowPlaying={onChangeNowPlaying}

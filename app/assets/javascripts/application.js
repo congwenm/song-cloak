@@ -42,16 +42,19 @@ class App extends React.Component {
     super(props);
     this.state = {
       open: false, themeOptions: darkBaseTheme,
-      songs: null, nowPlaying: null,
+      songs: [], nowPlaying: null,
     };
-    Song.fetch().then(songs => {
+    Song.fetch().then(persistedSongs => {
       this.setState({
-        songs,
-        nowPlaying: songs[0]
+        songs: persistedSongs,
+        nowPlaying: persistedSongs[0]
       })
     })
-    User.currentUser().then(currentUser => {
-      this.setState({ currentUser })
+    User.currentUser().then(({ user, masterpieces }) => {
+      this.setState({ 
+        songs: [...this.state.songs, ...masterpieces],
+        currentUser: user,
+      })
     })    
   }
 
@@ -87,7 +90,7 @@ class App extends React.Component {
       paddingLeft: (open ? SIDEBAR_WIDTH : 0) + 24,
       transition: 'padding-left 0.2s',
     }
-    if (!songs) { return false }
+    if (!nowPlaying) { return false }
 
     // TODO: check if manual background is even needed.
     return (

@@ -1,12 +1,16 @@
 class SongsController < ApplicationController
   def index
-    render json: Song.all.order(:created_at).as_json(except: [:description])
+    saved_songs = Song.all.order(:created_at).as_json(except: [:description])
+    render json: {
+      saved_songs: saved_songs,
+    }
   end
 
   # def index
   # account = Yt::Account.new access_token: 
   #   end
 
+  # wont need this.
   def create
     @song_link ||= params[:song][:link]
     if @song_link

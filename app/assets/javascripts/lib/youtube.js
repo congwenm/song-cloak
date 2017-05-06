@@ -28,23 +28,24 @@ class Youtube {
     onStateChange = () => {}, 
   }) {
     Youtube.all.push(this)
-
-    this.player = new YT.Player(id, {
-      events: {
-        'onReady': onReady.bind(this),
-        // -1 - unstarted
-        // 0 – ended
-        // 1 – playing
-        // 2 – paused
-        // 3 – buffering
-        // 5 – video cued
-        'onStateChange': onStateChange.bind(this)
-      },
-      playerVars: { 
-        'controls': 0,
-        'showinfo': 0
-      }
-    });
+    setTimeout(() => { // YT.Player might not be initially loaded
+      this.player = new YT.Player(id, {
+        events: {
+          'onReady': onReady.bind(this),
+          // -1 - unstarted
+          // 0 – ended
+          // 1 – playing
+          // 2 – paused
+          // 3 – buffering
+          // 5 – video cued
+          'onStateChange': onStateChange.bind(this)
+        },
+        playerVars: { 
+          'controls': 0,
+          'showinfo': 0
+        }
+      });
+    }, 20)
   }
 }
 
@@ -58,5 +59,6 @@ const ENDED = 0
 const PLAYING = 1
 const PAUSED = 2
 const BUFFERING = 3
+const CUED = 5
 
-export { UNSTARTED, ENDED, PLAYING, PAUSED, BUFFERING }
+export { UNSTARTED, ENDED, PLAYING, PAUSED, BUFFERING, CUED }

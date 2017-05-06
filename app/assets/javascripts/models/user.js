@@ -1,3 +1,5 @@
+import Song from './song'
+
 export default class User {
 
   constructor(blocks) {
@@ -13,7 +15,14 @@ export default class User {
       credentials: 'include' // hot damn!
       // user_id: /user_id=(.*);/.exec(document.cookie)[1],
     }).then(res => {
-      return res.json().then(json => new User(json))
+      return res.json().then(json => {
+        return {
+          user: new User(json.user),
+          masterpieces: json.songs.map(
+            songParam => new Song(songParam)
+          )
+        }
+      })
     })
   }
   

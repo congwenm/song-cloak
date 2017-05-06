@@ -11,7 +11,7 @@ export default class Song {
   static fetch() {
     return fetch('/api/songs').then(res => {
       return res.json().then(json => {
-        return json.map(songParam => new Song(songParam))
+        return json.saved_songs.map(songParam => new Song(songParam))
       })
     })
   }
