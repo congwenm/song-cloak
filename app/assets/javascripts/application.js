@@ -24,6 +24,13 @@ import Contact from './contact'
 import MenuDrawer from './components/MenuDrawer'
 import AppBody from './components/AppBody'
 
+// youtube api
+import Youtube, {
+  UNSTARTED, ENDED, PLAYING, PAUSED, BUFFERING
+} from './lib/youtube'
+
+import { currentPlayer } from './components/NowPlaying'
+
 
 // models
 import Song from './models/song'
@@ -48,6 +55,20 @@ class App extends React.Component {
   }
 
   setNowPlaying(nowPlaying) {
+    if (this.state.nowPlaying === nowPlaying) {
+      switch (currentPlayer.player.getPlayerState()) {
+        case PAUSED:
+        case ENDED: 
+          currentPlayer.player.playVideo()
+          break;
+        case PLAYING:
+          currentPlayer.player.pauseVideo()
+          break;
+      }
+    }
+    else {
+
+    }
     this.setState({ nowPlaying })
   }
 

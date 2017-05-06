@@ -16,7 +16,7 @@ const CONTROL_BUTTON_PROPS = {
   },
 }
 const VideoControl = ({ isHovering, isPlaying }) => {
-  return isHovering && (
+  return (isHovering || isPlaying) && (
     isPlaying ? 
       <Pause  {...CONTROL_BUTTON_PROPS} /> :
       <PlayArrow {...CONTROL_BUTTON_PROPS} />
@@ -33,12 +33,10 @@ export default class SongItem extends React.Component {
     const { song, index, isPlaying, onChangeNowPlaying } = this.props
     const { isHovering } = this.state
 
-    return <div key={index}
-      style={{ lineHeight: 0 }}
-    >
+    return <div key={index} style={{ lineHeight: 0 }} >
       <ListItem
-        onMouseOver={() => this.setState({ isHovering: true })}
-        onMouseOut={() => this.setState({ isHovering: false })}
+        onMouseEnter={() => this.setState({ isHovering: true })}
+        onMouseLeave={() => this.setState({ isHovering: false })}
         onClick={() => onChangeNowPlaying(song)}
         primaryText={
           <p className="primaryText m0">{song.title}</p>
@@ -56,6 +54,7 @@ export default class SongItem extends React.Component {
         rightAvatar={
           <VideoControl isPlaying={isPlaying} isHovering={isHovering}/>
         }
+        className={isPlaying ? 'is-playing' : ''}
       />
       <Divider className="col-xs-12"></Divider>
     </div>

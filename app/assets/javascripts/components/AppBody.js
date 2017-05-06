@@ -2,8 +2,13 @@ import React from 'react'
 import SongList from './SongList'
 import NowPlaying from './NowPlaying'
 export default class AppBody extends React.Component {
-
-  
+  nextSong() {
+    const { songs, nowPlaying, onChangeNowPlaying } = this.props
+    var index = songs.indexOf(nowPlaying)
+    onChangeNowPlaying(
+      songs[(index + 1) % songs.length] // get the next song
+    )
+  }
 
   render() {
     const { style, songs, onChangeNowPlaying, nowPlaying } = this.props
@@ -18,6 +23,7 @@ export default class AppBody extends React.Component {
       />
       <NowPlaying className="col-xs-6"
         nowPlaying={nowPlaying}
+        nextSong={() => this.nextSong()}
       />
     </div>
   }

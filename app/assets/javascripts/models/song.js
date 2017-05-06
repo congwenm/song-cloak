@@ -15,4 +15,8 @@ export default class Song {
       })
     })
   }
+
+  get embedLink() {
+    return `${this.link.replace('watch?v=', 'embed/')}?enablejsapi=1`
+  }
 }
