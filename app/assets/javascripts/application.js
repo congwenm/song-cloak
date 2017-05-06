@@ -39,7 +39,8 @@ import User from './models/user'
 const SIDEBAR_WIDTH = 200
 class App extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
+    window.App = this
     this.state = {
       open: false, themeOptions: darkBaseTheme,
       songs: [], nowPlaying: null,

@@ -10,10 +10,33 @@ import SongItem from './SongItem'
 class SongList extends React.Component {
   render() {
     const { className, songs, nowPlaying, onChangeNowPlaying } = this.props
+    const {
+      persisted: persistedSongs,
+      playlist: playlistSongs, 
+    } = songs.reduce((obj, song) => {
+      obj[song.type || 'persisted'].push(song) 
+      return obj
+    }, {
+      persisted: [],
+      playlist: [],
+    })
+
     return <List className={className}>
-      <Subheader>My Songs</Subheader>
+      <Subheader>Persisted Songs</Subheader>
       {
-        songs.map((song, index) =>
+        persistedSongs.map((song, index) =>
+          <SongItem
+            song={song}
+            key={index}
+            onChangeNowPlaying={onChangeNowPlaying}
+            index={index}
+            isPlaying={song === nowPlaying}
+          />
+        )
+      }
+      <Subheader>Playlist Songs</Subheader>
+      {
+        playlistSongs.map((song, index) =>
           <SongItem
             song={song}
             key={index}
