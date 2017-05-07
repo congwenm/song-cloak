@@ -1,0 +1,1 @@
+web: webpack -p && bundle exec server -p $PORT
