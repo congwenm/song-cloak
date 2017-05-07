@@ -1,11 +1,16 @@
 class User < ApplicationRecord
   serialize :playlist_names
 
+  scope :inactive, -> { where("expires_at < ?", DateTime.now)}
+  
+  default_scope { where("expires_at > ?", DateTime.now)}
+
   class << self
     def from_omniauth(auth)
-      user = User.find_or_initialize_by(uid: auth['uid'])
+      user = User.unscoped.find_or_initialize_by(uid: auth['uid'])
       user.name = auth['info']['name']
       user.token = auth['credentials']['token']
+      user.expires_at = Time.at(auth['credentials']['expires_at'])
       user.save!
       user
     end
@@ -36,7 +41,7 @@ class User < ApplicationRecord
   def songs
     # find my favorite playlist that contains all the music
     
-    pls = query_playlists do |pl|   
+    pls = query_playlists do |pl|
       playlist_names.include? pl.title
     end
     

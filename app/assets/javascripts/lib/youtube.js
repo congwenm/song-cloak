@@ -21,6 +21,16 @@
 // };
 // import './yt-api'
 
+
+let ytResolve
+const ytAPIReady = new Promise((resolve) => {
+  ytResolve = resolve
+})
+
+window.onYouTubePlayerAPIReady = () => {
+  ytResolve()
+}
+
 class Youtube { 
   constructor({ 
     id = 'now-playing', 
@@ -28,7 +38,8 @@ class Youtube {
     onStateChange = () => {}, 
   }) {
     Youtube.all.push(this)
-    setTimeout(() => { // YT.Player might not be initially loaded
+    
+    ytAPIReady.then(() => { // YT.Player might not be initially loaded
       this.player = new YT.Player(id, {
         events: {
           'onReady': onReady.bind(this),
@@ -45,7 +56,7 @@ class Youtube {
           'showinfo': 0
         }
       });
-    }, 20)
+    })
   }
 }
 

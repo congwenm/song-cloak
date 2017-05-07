@@ -71,7 +71,11 @@ class App extends React.Component {
   }
 
   handleLogout() {
-    this.setState({ currentUser: null })
+    this.setState({ 
+      currentUser: null,
+      songs: this.state.persistedSongs,
+      playlistSongs: [],
+    })
   }
 
   setNowPlaying(nowPlaying) {

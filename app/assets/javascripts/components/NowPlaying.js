@@ -21,7 +21,7 @@ const createPlayer = ({ nextSong }) => {
   return new Youtube({
     onReady() {
       console.debug('player ready')
-      this.player.playVideo()
+      setTimeout(() => this.player.playVideo(), 500)
     },
     onStateChange(event) {
       console.warn('event happened', event.data)
@@ -38,7 +38,6 @@ const createPlayer = ({ nextSong }) => {
 }
 
 export default class NowPlaying extends React.Component {
-
   componentDidMount() {
     const { nextSong } = this.props
     currentPlayer = createPlayer({ nextSong })

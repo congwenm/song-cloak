@@ -59,8 +59,8 @@ export default class PlaylistPicker extends React.Component {
         >
           Change Playlist: 
           <ul>
-            {selectedPlaylists.map(pl =>
-              <li>{pl}</li>
+            {selectedPlaylists.map((pl, index) =>
+              <li key={index}>{pl}</li>
             )}
           </ul>
         </a>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170506224905) do
+ActiveRecord::Schema.define(version: 20170507193333) do
 
   create_table "songs", force: :cascade do |t|
     t.string   "link"
@@ -27,10 +27,11 @@ ActiveRecord::Schema.define(version: 20170506224905) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "token"
-    t.string "uid"
-    t.string "playlist_names", default: "--- []\n"
+    t.string   "name"
+    t.string   "token"
+    t.string   "uid"
+    t.string   "playlist_names", default: "--- []\n"
+    t.datetime "expires_at"
     t.index ["uid"], name: "index_users_on_uid", unique: true
   end
 
