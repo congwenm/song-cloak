@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   # so far you can only update playlists
   def update
-    current_user.update(playlist_names: Array.new(params[:playlists]))
+    current_user.update(playlist_names: params[:playlists].to_s.gsub(/\[/, '{').gsub(/\]/, '}'))
     render json: current_user
   end
 end
