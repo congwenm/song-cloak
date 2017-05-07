@@ -79,7 +79,7 @@ class App extends React.Component {
   }
 
   setNowPlaying(nowPlaying) {
-    if (this.state.nowPlaying === nowPlaying) {
+    if (this.state.nowPlaying === nowPlaying && currentPlayer.player) {
       switch (currentPlayer.player.getPlayerState()) {
         case PAUSED:
         case ENDED: 

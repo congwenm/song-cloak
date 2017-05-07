@@ -20,8 +20,8 @@ export let currentPlayer = null
 const createPlayer = ({ nextSong }) => {
   return new Youtube({
     onReady() {
-      console.debug('player ready')
-      setTimeout(() => this.player.playVideo(), 500)
+      console.warn('player ready')
+      setTimeout(() => this.player.playVideo(), 300)
     },
     onStateChange(event) {
       console.warn('event happened', event.data)
