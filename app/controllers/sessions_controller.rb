@@ -5,28 +5,7 @@ class SessionsController < ApplicationController
     if user
       render json: {
         user: user,
-        songs: get_songs(user)
-      }
-    end
-  end
-
-  def get_songs(user)
-    account = Yt::Account.new(refresh_token: user.token)
-
-    # find my favorite playlist that contains all the music
-    playlist = account.channel.playlists.find do |pl|   
-      pl.title.include?('masterpieces') 
-    end
-
-    playlist.playlist_items.map do |item|
-      {
-        type: 'playlist',
-        uid: item.id, 
-        title: item.title, 
-        thumbnail_url: item.thumbnail_url, 
-        video_id: item.video_id,
-        link: 'https://www.youtube.com/watch?v=' + item.video_id,
-        published_at: item.published_at,
+        songs: user.songs
       }
     end
   end

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   scope "api" do 
     resources :songs
     get '/sessions/status'
+    get '/users/playlists'
+    put '/users', to: 'users#update'
   end
 
 

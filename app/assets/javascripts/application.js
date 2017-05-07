@@ -48,12 +48,19 @@ class App extends React.Component {
     Song.fetch().then(persistedSongs => {
       this.setState({
         songs: persistedSongs,
+        persistedSongs,
         nowPlaying: persistedSongs[0]
       })
     })
-    User.currentUser().then(({ user, masterpieces }) => {
+
+    this.fetchUser()
+  }
+
+  fetchUser() {
+    User.currentUser().then(({ user, songs }) => {
       this.setState({ 
-        songs: [...this.state.songs, ...masterpieces],
+        songs: [...this.state.persistedSongs, ...songs],
+        playlistSongs: songs,
         currentUser: user,
       })
     })    
@@ -100,6 +107,7 @@ class App extends React.Component {
           open={open}
           width={SIDEBAR_WIDTH}
           onRequestChange={open => this.setState({ open })}
+          onPlaylistUpdate={() => this.fetchUser()}
           currentUser={currentUser}
           onLogout={() => this.handleLogout()}
         />

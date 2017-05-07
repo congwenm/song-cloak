@@ -18,7 +18,7 @@ export default class User {
       return res.json().then(json => {
         return {
           user: new User(json.user),
-          masterpieces: json.songs.map(
+          songs: json.songs.map(
             songParam => new Song(songParam)
           )
         }
@@ -26,6 +26,29 @@ export default class User {
     })
   }
   
+  getPlaylists() {
+    return fetch('/api/users/playlists', {
+      credentials: 'include' // TODO: i think we need this
+    }).then(res => 
+      res.json().then(json => {
+        return json
+      })
+    )
+  }
+
+  updatePlaylists(playlists) {
+    return fetch('/api/users', {
+      method: 'PUT',
+      credentials: 'include',
+      body: JSON.stringify({ playlists }),
+      headers: new Headers({ 
+        "Content-Type":  "application/json" 
+      }),
+    }).then(res => res.json().then(json => {
+      this.playlist_names = json.playlist_names
+    }))
+  }
+
   logout () {
     return fetch('/logout', {
       method: 'delete',

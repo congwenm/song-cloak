@@ -3,17 +3,29 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 
-export default class MenuDrawerComponent extends React.Component {
+import PlaylistPicker from './PlaylistPicker'
+
+export default class MenuDrawer extends React.Component {
   render() {
-    const { currentUser, onLogout } = this.props
+    const { currentUser, onLogout, onPlaylistUpdate } = this.props
     return (
       <div>
         <Drawer docked {...this.props}
         >
           { currentUser && currentUser.isAuthenticated && 
-            <MenuItem className="no-hover">
-              <User user={currentUser}/>
-            </MenuItem>
+            <div>
+              <MenuItem className="no-hover">
+                <User user={currentUser}/>
+              </MenuItem>
+
+              <MenuItem>
+                <PlaylistPicker 
+                  selectedPlaylists={currentUser.playlist_names} 
+                  currentUser={currentUser}
+                  onPlaylistUpdate={onPlaylistUpdate}
+                />
+              </MenuItem>
+            </div>
           }
           
           <MenuItem>
