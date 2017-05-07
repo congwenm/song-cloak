@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  serialize :playlist_names
+  serialize (:playlist_names || [])
 
   scope :inactive, -> { where("expires_at < ?", DateTime.now)}
   
@@ -42,7 +42,7 @@ class User < ApplicationRecord
     # find my favorite playlist that contains all the music
     
     pls = query_playlists do |pl|
-      playlist_names.include? pl.title
+      (playlist_names || []).include? pl.title
     end
     
     # basically flat maps
