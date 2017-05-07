@@ -1,5 +1,10 @@
 class User < ApplicationRecord
-  serialize (:playlist_names || [])
+  serialize (:playlist_names)
+  after_initialize :default_values
+
+  def default_values
+    self.playlist_names ||= []
+  end
 
   scope :inactive, -> { where("expires_at < ?", DateTime.now)}
   
