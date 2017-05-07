@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20170507193333) do
     t.string   "name"
     t.string   "token"
     t.string   "uid"
-    t.string   "playlist_names", default: "--- []\n"
+    t.string   "playlist_names"
     t.datetime "expires_at"
     t.index ["uid"], name: "index_users_on_uid", unique: true
   end
