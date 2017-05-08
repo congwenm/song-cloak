@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20170507193333) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "songs", force: :cascade do |t|
     t.string   "link"
     t.string   "title"
@@ -23,16 +26,16 @@ ActiveRecord::Schema.define(version: 20170507193333) do
     t.string   "description"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.index ["uid"], name: "index_songs_on_uid"
+    t.index ["uid"], name: "index_songs_on_uid", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "token"
     t.string   "uid"
-    t.string   "playlist_names"
+    t.text     "playlist_names", default: [], array: true
     t.datetime "expires_at"
-    t.index ["uid"], name: "index_users_on_uid", unique: true
+    t.index ["uid"], name: "index_users_on_uid", unique: true, using: :btree
   end
 
 end
