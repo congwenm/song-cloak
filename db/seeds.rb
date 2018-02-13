@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-require 'factory_girl_rails'
+require 'factory_bot_rails'
 
 [
   # 'https://www.youtube.com/watch?v=tOKS5oSqjII',
@@ -15,7 +15,7 @@ require 'factory_girl_rails'
   'https://www.youtube.com/watch?v=gw9fKuymA0I',
   'https://www.youtube.com/watch?v=jTnYrPLwEdo',
 ].each do |link|
-  FactoryGirl.create(:song, link: link)  
+  FactoryBot.create(:song, link: link)
 end
 
 

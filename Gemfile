@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'pg', '~> 0.18'
+gem 'factory_bot_rails'
+
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
@@ -7,8 +10,7 @@ end
 
 gem 'omniauth-google-oauth2'
 gem 'yt', '~> 0.13.7'
-gem 'factory_girl'
-gem 'factory_girl_rails' # possible need to wrap this in :test
+gem 'factory_bot'
 gem 'rspec-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -38,10 +40,9 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'pg'
 group :production do
   # gem 'pg'
-  
+
 end
 
 group :development, :test do
